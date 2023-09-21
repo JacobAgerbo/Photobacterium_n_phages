@@ -3,7 +3,7 @@
 ## Description of bioninformatics
 
 ### Publicly available genomes of Photobacterium
-We recruited all publicly available genomes with the bacterial genera Photobacterium from the National Center for Biotechnology Information (NCBI), using the command line-based NCBI Datasets, resulting in 361 publicly available Photobacterium genomes. Furthermore, were metagenomic assembled genomes from recent investigation (REF -Holofish).
+We recruited all publicly available genomes with the bacterial genera Photobacterium from the National Center for Biotechnology Information (NCBI), using the command line-based NCBI Datasets, resulting in 361 publicly available Photobacterium genomes. Furthermore, were metagenomic assembled genomes from recent [investigation](https://www.biorxiv.org/content/10.1101/2023.07.20.549827v1).
 
 ```{bash}
 # Set the search term to "Photobacterium[Organism]"
