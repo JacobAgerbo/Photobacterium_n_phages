@@ -10,7 +10,11 @@ Phage therapy shows promise as an alternative to antibiotics for controlling bac
 In relation to its fish hosts, like Atlantic salmon, it is crucial to also understand its interactions with phages to fully understand the biology of Photobacterium. Phage infection may influence the virulence of Photobacterium towards salmon, and the transfer of virulence genes between strains. As such, knowledge about the phages that infect Photobacterium can provide critical insights into the factors driving disease and microbiome dynamics in Atlantic salmon. Increased study of phages and their complex interactions with Photobacterium will yield a more complete understanding of this genus of bacteria which plays a vital role in the marine environment and aquaculture. Hence, we have investigated the pangenome of salmonid-related Photobacterium and generated a metabolic reconstruction to estimate metabolic capacities for salmonid-related Photobacteirum. Furthermore, we predicted the presence of prophages and investigated their relation to adaptive traits between Photobacterium and Atlantic salmon.
 
 **1.** 	Koskella B, Brockhurst MA. Bacteria-phage coevolution as a driver of ecological and evolutionary processes in microbial communities. FEMS Microbiol Rev. 2014;38: 916–931.
+
 **2.** 	Ramos-Vivas J, Superio J, Galindo-Villegas J, Acosta F. Phage Therapy as a Focused Management Strategy in Aquaculture. Int J Mol Sci. 2021;22. doi:10.3390/ijms221910436
+
 **3.** 	Laanto E, Bamford JKH, Laakso J, Sundberg L-R. Phage-driven loss of virulence in a fish pathogenic bacterium. PLoS One. 2012;7: e53157.
-**4.** 	Rasmussen JA, Kiilerich P, Madhun AS, Waagbø R, Lock E-JR, Madsen L, et al. Co-diversification of an intestinal Mycoplasma and its salmonid host. ISME J. 2023. doi:10.1038/s41396-023-01379-z
+
+**4.** 	Rasmussen JA, Kiilerich P, Madhun AS, Waagbø R, Lock E-JR, Madsen L, et al. Co-diversification of an intestinal *Mycoplasma* and its salmonid host. ISME J. 2023. doi:10.1038/s41396-023-01379-z
+
 **5.** 	Baseggio L, Rudenko O, Engelstädter J, Barnes AC. The Evolution of a Specialized, Highly Virulent Fish Pathogen through Gene Loss and Acquisition of Host-Specific Survival Mechanisms. Appl Environ Microbiol. 2022;88: e0022222.
