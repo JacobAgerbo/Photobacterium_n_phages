@@ -1,6 +1,14 @@
 # Comparative Analysis of salmonid-related Photobacterium and its relation to phages
 
 ## Description of bioninformatics
+- [Retrival of data](#publicly-available-genomes-of-Photobacterium)
+- [Photobacterium phylogenomics](#Phylogenomic-Photobacterium-genomes)
+- [Photobacterium comparative genomics](#Comparative-genomics-of-Photobacterium-genomes)
+    - [Viral annotation for pangenome](#Viral-annotation-of-salmonid-related-*Photobacterium*)
+- [Metabolic reconstruction of pangenome](Metabolic-reconstruction-of-Photobacterium)
+- [Enrichment analysis of KOfams ](#Enrichment-analysis-of-KOfams)
+
+___
 
 ### Publicly available genomes of Photobacterium
 We recruited all publicly available genomes with the bacterial genera Photobacterium from the National Center for Biotechnology Information (NCBI), using the command line-based NCBI Datasets, resulting in 361 publicly available Photobacterium genomes. Furthermore, were metagenomic assembled genomes from recent [investigation](https://www.biorxiv.org/content/10.1101/2023.07.20.549827v1).
@@ -22,6 +30,7 @@ unzip "*.fasta.zip" -d photobacterium_genomes
 # Clean up the downloaded zip files
 rm *.fasta.zip
 ```
+___
 
 ### Phylogenomic Photobacterium genomes
 All genomes were compared with salmonid-related MAGs using anvi’o/v7.1 [1,2] for phylogenomic and comparative analysis. The phylogenomic analysis was carried out based on bacterial single-copy core genes (SCGs) using an anvi’o bacterial database with 71 bacterial SCGs. Amino acid sequences were extracted from Hidden Markov Models (HMMs) of SCGs and concatenated into aligned amino acid sequences. Concatenated amino acid sequences were used to generate a Newick-based maximum-likelihood phylogeny using FastTree2 [3].
@@ -69,6 +78,9 @@ anvi-get-sequences-for-hmm-hits --external-genomes external-genomes.txt \
 anvi-gen-phylogenomic-tree -f concatenated-proteins.fa \
                            -o phylogenomic-tree.txt                                
 ```     
+___
+
+### Comparative genomics of Photobacterium genomes
 
 We selected the genomes, which were closely related with salmonid-related *Photobacterium* and further generate comparative genomics and annotation of progphages and phage-related genes within in the clade of salmonid-related *Photobacterium*.
 
@@ -78,7 +90,7 @@ cp pangenome_genomes.fixed.fa PANGENOME/
 cd PANGENOME
 ```
 
-### Viral annotation of salmonid-related *Photobacterium*
+#### Viral annotation of salmonid-related *Photobacterium*
 We carried out the viral annotation of salmonid-related *Photobacterium* using the novel and promising tool, [geNomad](https://github.com/apcamargo/genomad). Reference can be found [here](https://www.nature.com/articles/s41587-023-01953-y)! 
 
 So initially we start with geNomad annotation. 
@@ -130,7 +142,6 @@ do
 done
 ```
 
-### Comparative genomics of Photobacterium genomes
 The comparative analysis was carried out as in the previous studies [4,5], where similarities of each amino acid sequence in every genome were calculated against every other amino acid sequence across all genomes using BLASTp. We implemented Minbit heuristics of 0.5 to eliminate weak matches between two amino acid sequences [6] and an MCL inflation of 2. We used the MCL algorithms to identify gene clusters in amino acid sequence similarity [7]. We calculated ANI using PyANI [8]. Euclidean distance and ward linkage were used to organise gene clusters and genomes. A summary of the pan-genome generated for this study is available [here]().
 
 We selected the genomes, which were closely related with salmonid-related *Photobacterium*. Below you find the basal code for generating the *Photobacterium* pangenome.
@@ -156,17 +167,31 @@ anvi-import-misc-data view.txt \
                               --target-data-table layers --just-do-it
 ```
 
-After a bit polishing, yay! 
+After a bit of polishing and yay! 
 
 ![*Photobacterium* pangenome with functional and viral annotation.](../misc/Photobacterium_PAN.jpg)
 
+___
 
 ### Metabolic reconstruction of Photobacterium
 Metabolic reconstruction of compared MAGs was based on KOfams and was carried out using the anvi’o platform. We calculated the level of completeness for a given KEGG module [9,10] in our genomes using the programme anvi-estimate-metabolism, which leveraged the previous annotation of genes with KEGG orthologs (KOs). The URL https://merenlab.org/m/anvi-estimate-metabolism serves as a tutorial for this program which details the modes of usage and output file formats. The Heatmap of completion scores was illustrated using the ComplexHeatmap [11] package for R. Genomes were clustered based on similarity across the completion of pathways, as previously done for other bacterial genera [4].
 
+
+
+
 ### Enrichment analysis of KOfams 
 The statistical approach for enrichment analysis is previously defined [12]. Briefly, the programme anvi-compute-functional-enrichment determined enrichment scores for KOfams genomes of salmonid-related Photobacterium and non-salmonid-related Photobacterium by fitting a binomial generalised linear model (GLM) to the occurrence of each KOfam in each group and then computing a Rao test statistic. We considered any KOfam with a q-value less than 0.05 to be ‘enriched’ in its associated group. The volcano plot was visualised using the EnhancedVolcano package for R.
 
+```
+anvi-compute-functional-enrichment-in-pan -p PHOTOBACTERIUM/Photobacterium-PAN.db \
+    -g PHOTOBACTERIUM-GENOMES.db \
+    --category Host_related \
+    --annotation-source KOfam \
+    -o enriched-functions-KOfam_Host_related.txt
+```
+
+
+### Some overall References
 **1.** 	Eren AM, Kiefl E, Shaiber A, Veseli I, Miller SE, Schechter MS, et al. Community-led, integrated, reproducible multi-omics with anvi’o. Nat Microbiol. 2021;6: 3–6.
 
 **2.** 	Murat Eren A, Esen ÖC, Quince C, Vineis JH, Morrison HG, Sogin ML, et al. Anvi’o: an advanced analysis and visualization platform for ‘omics data. PeerJ. 2015;3: e1319.
