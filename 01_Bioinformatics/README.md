@@ -156,7 +156,9 @@ anvi-import-misc-data view.txt \
                               --target-data-table layers --just-do-it
 ```
 
+After a bit polishing, yay! 
 
+![*Photobacterium* pangenome with functional and viral annotation.](https://github.com/JacobAgerbo/Photobacterium_n_phages/tree/main/misc/Photobacterium_PAN.jpg)
 
 
 ### Metabolic reconstruction of Photobacterium
