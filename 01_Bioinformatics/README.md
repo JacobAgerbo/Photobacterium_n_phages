@@ -70,11 +70,34 @@ anvi-gen-phylogenomic-tree -f concatenated-proteins.fa \
                            -o phylogenomic-tree.txt                                
 ```     
 
-
-
-
 ### Comparative genomics of Photobacterium genomes
 The comparative analysis was carried out as in the previous studies [4,5], where similarities of each amino acid sequence in every genome were calculated against every other amino acid sequence across all genomes using BLASTp. We implemented Minbit heuristics of 0.5 to eliminate weak matches between two amino acid sequences [6] and an MCL inflation of 2. We used the MCL algorithms to identify gene clusters in amino acid sequence similarity [7]. We calculated ANI using PyANI [8]. Euclidean distance and ward linkage were used to organise gene clusters and genomes. A summary of the pan-genome generated for this study is available [here]().
+
+We selected the genomes, which were closely related with salmonid-related *Photobacterium*
+
+```
+# Generating genome database for pangenome
+anvi-gen-genomes-storage -i external-genomes.txt \
+                         -o PHOTOBACTERIUM-GENOMES.db
+
+# Generating gene clusters and pan-profile
+anvi-pan-genome -g PHOTOBACTERIUM-GENOMES.db \
+                --project-name "PHOTOBACTERIUM_PAN" \
+                --output-dir PHOTOBACTERIUM_PAN \
+                --num-threads 10 \
+                --minbit 0.5 \
+                --mcl-inflation 10 \
+                --use-ncbi-blast
+
+# Calculating ANI across genomes
+anvi-compute-genome-similarity -i external-genomes.txt -o ANI --program 'pyANI'
+
+# adding genome-info to pangenome
+anvi-import-misc-data view.txt \
+                              -p PHOTOBACTERIUM_PAN/PHOTOBACTERIUM_PAN-PAN.db \
+                              --target-data-table layers --just-do-it
+```
+
 
 ### Metabolic reconstruction of Photobacterium
 Metabolic reconstruction of compared MAGs was based on KOfams and was carried out using the anvi’o platform. We calculated the level of completeness for a given KEGG module [9,10] in our genomes using the programme anvi-estimate-metabolism, which leveraged the previous annotation of genes with KEGG orthologs (KOs). The URL https://merenlab.org/m/anvi-estimate-metabolism serves as a tutorial for this program which details the modes of usage and output file formats. The Heatmap of completion scores was illustrated using the ComplexHeatmap [11] package for R. Genomes were clustered based on similarity across the completion of pathways, as previously done for other bacterial genera [4].
