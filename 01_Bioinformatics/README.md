@@ -261,6 +261,29 @@ modules_of_interest <- enrichment %>%
   dplyr::select(accession,KEGG_Module)
 ```
 
+Lets plot completion for modules of interest (based on enrichment related to host relation). 
+
+```{r plot module completetion for CORE microbes}
+set.seed(1)
+# set explicit group orders, and assign some group colors
+groups_order <- c("Salmon","Meat","Marine","Haddock","Cod","Halibut","Milkfish" )
+group_colors <- c(wes_palette("Rushmore1",5)[5:3],wes_palette("Darjeeling2",4))
+
+df <- df[df$module %in% modules_of_interest$accession, ]
+
+ggplot(data=df, aes(x=group, y=completion, group=group)) +
+  geom_boxplot(aes(fill=group), alpha=0.35, outlier.shape = NA, color=NA) +
+  geom_violin(fill="#505050", alpha=0.35, width=1.3, colour = '#505050') +
+  geom_jitter(colour='#222222', width = 0.3, height = 0.02, size=0.5, alpha=0.05) +
+  theme_ridges() +
+  theme(legend.position="none") +
+  ylab("Metabolic module completion") +
+  xlab("Related to Host Environment") +
+  scale_x_discrete(limits = groups_order) +
+  scale_fill_manual(values = group_colors)
+```
+
+![*Photobacterium* metabolic independence](../misc/Metabolic_capacity_Host.pdf)
 
 ### Some overall References
 **1.** 	Eren AM, Kiefl E, Shaiber A, Veseli I, Miller SE, Schechter MS, et al. Community-led, integrated, reproducible multi-omics with anvi’o. Nat Microbiol. 2021;6: 3–6.
