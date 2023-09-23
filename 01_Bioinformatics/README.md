@@ -7,6 +7,7 @@
     - [Viral annotation for pangenome](#Viral-annotation-of-salmonid-related-*Photobacterium*)
 - [Metabolic reconstruction of pangenome](Metabolic-reconstruction-of-Photobacterium)
 - [Enrichment analysis of KOfams ](#Enrichment-analysis-of-KOfams)
+- [Analysis of microbial metabolic independence](#analysis-of-microbial-metabolic-independence)
 
 ___
 
@@ -174,20 +175,90 @@ After a bit of polishing and yay!
 ___
 
 ### Metabolic reconstruction of Photobacterium
-Metabolic reconstruction of compared MAGs was based on KOfams and was carried out using the anvi’o platform. We calculated the level of completeness for a given KEGG module [9,10] in our genomes using the programme anvi-estimate-metabolism, which leveraged the previous annotation of genes with KEGG orthologs (KOs). The URL https://merenlab.org/m/anvi-estimate-metabolism serves as a tutorial for this program which details the modes of usage and output file formats. The Heatmap of completion scores was illustrated using the ComplexHeatmap [11] package for R. Genomes were clustered based on similarity across the completion of pathways, as previously done for other bacterial genera [4].
+Metabolic reconstruction of compared MAGs was based on KOfams and was carried out using the anvi’o platform. We calculated the level of completeness for a given KEGG module [9,10] in our genomes using the programme anvi-estimate-metabolism, which leveraged the previous annotation of genes with KEGG orthologs (KOs). The URL https://merenlab.org/m/anvi-estimate-metabolism serves as a tutorial for this program which details the modes of usage and output file formats. The Heatmap of completion scores was illustrated using the ComplexHeatmap [11] package for R. Genomes were clustered based on similarity across the completion of pathways, as previously done for other bacterial genera [4]. Further illustrations was made with tidyverse and ggplot.
 
-
+```{bash}
+anvi-estimate-metabolism \
+        -e external-genomes.txt \
+        --matrix-format
+```
 
 
 ### Enrichment analysis of KOfams 
 The statistical approach for enrichment analysis is previously defined [12]. Briefly, the programme anvi-compute-functional-enrichment determined enrichment scores for KOfams genomes of salmonid-related Photobacterium and non-salmonid-related Photobacterium by fitting a binomial generalised linear model (GLM) to the occurrence of each KOfam in each group and then computing a Rao test statistic. We considered any KOfam with a q-value less than 0.05 to be ‘enriched’ in its associated group. The volcano plot was visualised using the EnhancedVolcano package for R.
 
+We calculated the enrichment across geNomad_functions, KEGG and PFAM and for being related to a host or potentially freeliving. 
 ```
 anvi-compute-functional-enrichment-in-pan -p PHOTOBACTERIUM/Photobacterium-PAN.db \
     -g PHOTOBACTERIUM-GENOMES.db \
     --category Host_related \
+    --annotation-source geNomad_functions \
+        -o enriched-functions-geNomad_Host_related.txt
+
+anvi-compute-functional-enrichment-in-pan -p PHOTOBACTERIUM/Photobacterium-PAN.db \
+    -g PHOTOBACTERIUM-GENOMES.db \
+    --category Host_related \
     --annotation-source KOfam \
-    -o enriched-functions-KOfam_Host_related.txt
+        -o enriched-functions-KOfam_Host_related.txt
+
+anvi-compute-functional-enrichment-in-pan -p PHOTOBACTERIUM/Photobacterium-PAN.db \
+    -g PHOTOBACTERIUM-GENOMES.db \
+    --category Host_related \
+    --annotation-source Pfam \
+        -o enriched-functions-Pfam_Host_related.txt
+```
+
+...and also test if there were genes with a intestinal relation.
+```
+anvi-compute-functional-enrichment-in-pan -p PHOTOBACTERIUM/Photobacterium-PAN.db \
+    -g PHOTOBACTERIUM-GENOMES.db \
+    --category Intestinal_related \
+    --annotation-source geNomad_functions \
+        -o enriched-functions-geNomad_Intestinal_related.txt
+
+anvi-compute-functional-enrichment-in-pan -p PHOTOBACTERIUM/Photobacterium-PAN.db \
+    -g PHOTOBACTERIUM-GENOMES.db \
+    --category Intestinal_related \
+    --annotation-source KOfam \
+        -o enriched-functions-KOfam_Intestinal_related.txt
+
+anvi-compute-functional-enrichment-in-pan -p PHOTOBACTERIUM/Photobacterium-PAN.db \
+    -g PHOTOBACTERIUM-GENOMES.db \
+    --category Intestinal_related \
+    --annotation-source Pfam \
+        -o enriched-functions-Pfam_Intestinal_related.txt
+```
+
+### Analysis of microbial metabolic independence
+To investigate whether or not these *Photobacterium* genomes are host-related we calculate their metabolic independence. Metabolic independence is a great lead to host-dependence, as this is potential directed from genome erosion, which is a clear signal host-dependence. 
+
+Lets start with loading data (in R)
+```{r load data, include=FALSE}
+module_completion <- read.table(file='kegg-metabolism-module_pathwise_completeness-MATRIX.txt', header = TRUE, sep = "\t")
+external_genomes <- read.table(file='view.txt', header = TRUE, sep = "\t")
+enrichment <- read.table(file = "../Enrichment_Analysis/enriched-functions-KEGGModule_Host_related.txt", header = TRUE, sep = "\t")
+
+tax <- read.table(file='view.txt', header = TRUE, sep = "\t") %>%
+  mutate(ID = paste(1:nrow(.), Organism_Name, sep = "_")) %>%
+  column_to_rownames(var = "ID")
+```
+
+```{r data fiddle , include=FALSE}
+# turn the boring matrix format into a data frame
+df <- melt(module_completion)
+
+# set some meaningful column names
+colnames(df) <- c('module', 'genome', 'completion')
+
+# use the external genomes file to associate each genome with a 'group'
+df$group <- external_genomes$Host[match(df$genome, external_genomes$samples)]
+```
+
+Lets find some **more** interesting modules. 
+```{r find modules of interest}
+modules_of_interest <- enrichment %>%
+  dplyr::filter(enrichment_score > 1) %>%
+  dplyr::select(accession,KEGG_Module)
 ```
 
 
