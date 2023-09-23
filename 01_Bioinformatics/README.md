@@ -283,7 +283,7 @@ ggplot(data=df, aes(x=group, y=completion, group=group)) +
   scale_fill_manual(values = group_colors)
 ```
 
-![*Photobacterium* metabolic independence](../misc/Metabolic_capacity_Host.pdf)
+![*Photobacterium* metabolic independence](../misc/Metabolic_capacity_Host.jpg)
 
 ### Some overall References
 **1.** 	Eren AM, Kiefl E, Shaiber A, Veseli I, Miller SE, Schechter MS, et al. Community-led, integrated, reproducible multi-omics with anvi’o. Nat Microbiol. 2021;6: 3–6.
