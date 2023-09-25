@@ -1,13 +1,16 @@
 # Comparative Analysis of salmonid-related Photobacterium and its relation to phages
 
-## Description of bioninformatics
-- [Retrival of data](#publicly-available-genomes-of-Photobacterium)
-- [Photobacterium phylogenomics](#Phylogenomic-Photobacterium-genomes)
-- [Photobacterium comparative genomics](#Comparative-genomics-of-Photobacterium-genomes)
-    - [Viral annotation for pangenome](#Viral-annotation-of-salmonid-related-*Photobacterium*)
-- [Metabolic reconstruction of pangenome](Metabolic-reconstruction-of-Photobacterium)
-- [Enrichment analysis of KOfams ](#Enrichment-analysis-of-KOfams)
-- [Analysis of microbial metabolic independence](#analysis-of-microbial-metabolic-independence)
+## Description of bioninformatics for comparative analysis of *Photobactierum*
+- [Comparative Analysis of salmonid-related Photobacterium and its relation to phages](#comparative-analysis-of-salmonid-related-photobacterium-and-its-relation-to-phages)
+  - [Description of bioninformatics for comparative analysis of *Photobactierum*](#description-of-bioninformatics-for-comparative-analysis-of-photobactierum)
+    - [Publicly available genomes of Photobacterium](#publicly-available-genomes-of-photobacterium)
+    - [Phylogenomic Photobacterium genomes](#phylogenomic-photobacterium-genomes)
+    - [Comparative genomics of Photobacterium genomes](#comparative-genomics-of-photobacterium-genomes)
+      - [Viral annotation of salmonid-related *Photobacterium*](#viral-annotation-of-salmonid-related-photobacterium)
+    - [Metabolic reconstruction of Photobacterium](#metabolic-reconstruction-of-photobacterium)
+    - [Enrichment analysis of KOfams](#enrichment-analysis-of-kofams)
+    - [Analysis of microbial metabolic independence](#analysis-of-microbial-metabolic-independence)
+    - [Some overall References](#some-overall-references)
 
 ___
 
@@ -170,7 +173,7 @@ anvi-import-misc-data view.txt \
 
 After a bit of polishing and yay! 
 
-![*Photobacterium* pangenome with functional and viral annotation.](../misc/Photobacterium_PAN.jpg)
+![*Photobacterium* pangenome with functional and viral annotation.](../../misc/Photobacterium_PAN.jpg)
 
 ___
 
@@ -283,7 +286,7 @@ ggplot(data=df, aes(x=group, y=completion, group=group)) +
   scale_fill_manual(values = group_colors)
 ```
 
-![*Photobacterium* metabolic independence](../misc/Metabolic_capacity_Host.jpg)
+![*Photobacterium* metabolic independence](../../misc/Metabolic_capacity_Host.jpg)
 
 So at least for module of interest, there might be some reduction in module completion and therefore a higher metabolic dependence. 
 
