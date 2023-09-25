@@ -66,7 +66,7 @@ anvi-get-pn-ps-ratio -V variability.txt \
                      -o Photobacterium_SCVs.txt
 ```
 
-Now we have our pN/pS ratio. Let make sense of them in `R``.
+Now we have our pN/pS ratio. Let make sense of them in `R`.
 
 First we calculate the mean pN/pS per gene call across all metagenomes.
 
@@ -133,9 +133,14 @@ pNpS.mean %>%
   scale_color_manual(values = c(wes_palette("Rushmore1", 5))[5:4])
 ```
 
-![pNpS raw](misc/pNpS_zoomed.png)
+<img src="https://github.com/JacobAgerbo/Photobacterium_n_phages/blob/main/01_Bioinformatics/Analysis_HoloFood/misc/pNpS_zoomed.png" width="75%" >
+
+
 
 Here we clearly see that genes under selection has viral annotations, which could indicate that the phages affect the salmonid-related *Photobacteirum*.
+
+
+
 ___
 
 ### Some overall References
