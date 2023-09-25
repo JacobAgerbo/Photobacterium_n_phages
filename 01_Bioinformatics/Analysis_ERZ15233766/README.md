@@ -106,7 +106,7 @@ pNpS.mean %>%
   ylab("Mean pN")
 ```
 
-<img src="https://github.com/JacobAgerbo/Photobacterium_n_phages/blob/main/01_Bioinformatics/Analysis_HoloFood/misc/pNpS_raw.png" width="75%" >
+<img src="https://github.com/JacobAgerbo/Photobacterium_n_phages/blob/main/01_Bioinformatics/Analysis_ERZ15233766/misc/pNpS_raw.png" width="75%" >
 
 So the dashed line indicates an abline of 1. Being on the left side of the dashed line means that pNpS > 1 and propose a selection pressure on these genes. Most genes are not under selection pressure. But I think we should zoom in a bit to make sense of those few genes. 
 
@@ -133,7 +133,7 @@ pNpS.mean %>%
   scale_color_manual(values = c(wes_palette("Rushmore1", 5))[5:4])
 ```
 
-<img src="https://github.com/JacobAgerbo/Photobacterium_n_phages/blob/main/01_Bioinformatics/Analysis_HoloFood/misc/pNpS_zoomed.png" width="75%" >
+<img src="https://github.com/JacobAgerbo/Photobacterium_n_phages/blob/main/01_Bioinformatics/Analysis_ERZ15233766/misc/pNpS_zoomed.png" width="75%" >
 
 
 
