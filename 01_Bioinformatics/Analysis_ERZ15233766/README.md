@@ -7,6 +7,7 @@
     - [Publicly available genomes of Photobacterium](#publicly-available-genomes-of-photobacterium)
     - [Profiling of metagenomes to ERZ15233766](#profiling-of-metagenomes-to-erz15233766)
     - [Analysis of viral selection pressure ERZ15233766](#analysis-of-viral-selection-pressure-erz15233766)
+    - [Oligotyping of viral genes](#oligotyping-of-viral-genes)
     - [Some overall References](#some-overall-references)
 
 ___
@@ -137,10 +138,13 @@ pNpS.mean %>%
 
 Here we clearly see that genes under selection has viral annotations, which could indicate that the phages affect the salmonid-related *Photobacteirum*.
 
+
+### Oligotyping of viral genes
+
+We have searched the genome for viral genes and potential prophages. 
 <img src="https://github.com/JacobAgerbo/Photobacterium_n_phages/blob/main/01_Bioinformatics/Analysis_ERZ15233766/misc/HF_photo_genome.png" width="75%" >
 
 
-### Oligotyping of viral genes
 
 - https://mobilednajournal.biomedcentral.com/articles/10.1186/s13100-022-00262-6
 
@@ -149,6 +153,8 @@ Here we clearly see that genes under selection has viral annotations, which coul
 - https://merenlab.org/2013/11/04/oligotyping-best-practices/
 
 - https://merenlab.org/tutorials/dgrs-in-metagenomes/
+
+- https://merenlab.org/software/oligotyping/
 
 ___
 
