@@ -135,11 +135,20 @@ pNpS.mean %>%
 
 <img src="https://github.com/JacobAgerbo/Photobacterium_n_phages/blob/main/01_Bioinformatics/Analysis_ERZ15233766/misc/pNpS_zoomed.png" width="75%" >
 
-
-
 Here we clearly see that genes under selection has viral annotations, which could indicate that the phages affect the salmonid-related *Photobacteirum*.
 
+<img src="https://github.com/JacobAgerbo/Photobacterium_n_phages/blob/main/01_Bioinformatics/Analysis_ERZ15233766/misc/HF_photo_genome.png" width="75%" >
 
+
+### Oligotyping of viral genes
+
+- https://mobilednajournal.biomedcentral.com/articles/10.1186/s13100-022-00262-6
+
+- https://merenlab.org/2016/11/08/pangenomics-v2/#running-a-pangenome-analysis
+
+- https://merenlab.org/2013/11/04/oligotyping-best-practices/
+
+- https://merenlab.org/tutorials/dgrs-in-metagenomes/
 
 ___
 
