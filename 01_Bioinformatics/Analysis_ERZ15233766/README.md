@@ -57,6 +57,7 @@ anvi-gen-variability-profile -c HoloFood_ERR4918746_bin.2_Photobacterium.db \
                                    -p PROFILE.db \
                                    -C DEFAULT \
                                    -b DEFAULT \
+                                   --engine CDN \
                                    -o variability.txt
 ```
 The pN/pS ratio (first described in [Schloissnig et al. 2012](https://doi.org/10.1038/nature11711)) is the ratio of 2 rates: the rates of non-synonymous (pN) and synonymous (pS) polymorphism. It is analogous to dN/dS, which is the ratio of rates between non-synonymous (dN) and synonymous substitutions between 2 strains/species. We calculate pN/pS from allele frequency obtained through SCVs and SAAVs (see [Kiefl et al., 2023](https://doi.org/10.1126/sciadv.abq4632 )) for exact implementation details. We did this previously for *Mycoplasma* in Atlantic salmon, see [here](https://doi.org/10.1038/s41396-023-01379-z).
